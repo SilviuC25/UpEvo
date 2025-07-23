@@ -65,14 +65,14 @@ export const navbarItems: NavbarItem[] = [
         title: "FastTyper",
         description: "Typing‑speed game with user auth, profiles & leaderboard",
         image: "/images/portfolio/fast-typer.png",
-        href: "/portfolio/fast-typer",
+        href: "https://fast-typer-pi.vercel.app/",
         liveLink: "https://fast-typer-pi.vercel.app/"
       },
       {
         title: "Hardware Explorer",
         description: "Tech blog platform with in‑app post creation & previews",
         image: "/images/portfolio/hardware-explorer.png",
-        href: "/portfolio/hardware-explorer",
+        href: "https://hardwareexplorer.vercel.app/",
         liveLink: "https://hardwareexplorer.vercel.app/"
       }
     ]

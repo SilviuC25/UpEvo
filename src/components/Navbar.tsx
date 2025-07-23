@@ -50,7 +50,6 @@ export default function Navbar() {
       className="backdrop-blur-md bg-gradient-to-br from-[#1A2F4F] to-[#2A3D5C] w-full sticky top-0 z-50 shadow-md"
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
         <motion.div
           variants={itemVariants}
           whileHover={{ scale: 1.05 }}
@@ -68,7 +67,6 @@ export default function Navbar() {
           </Link>
         </motion.div>
 
-        {/* Navigation Items */}
         <motion.div
           className="flex items-center gap-6"
           variants={itemVariants}
@@ -128,7 +126,6 @@ export default function Navbar() {
             )
           })}
 
-          {/* CTA Button */}
           <motion.div variants={itemVariants}>
             <AnimatedButton label="Start Your Project" href="/contact" />
           </motion.div>

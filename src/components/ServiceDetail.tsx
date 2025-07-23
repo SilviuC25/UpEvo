@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import AnimatedButton from '@/components/AnimatedButton'
+import PageTitle from '@/components/PageTitle'
 
 interface Props {
   title: string
@@ -20,7 +21,12 @@ export default function ServiceDetail({ title, descriptionLong, image }: Props) 
         className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center"
       >
         <div className="space-y-6">
-          <h1 className="text-4xl md:text-5xl font-bold text-[#044E99]">{title}</h1>
+          <PageTitle text={title} />
+          <style jsx>{`
+            :global(h1) {
+              text-align: left !important;
+            }
+          `}</style>
           <p className="text-lg md:text-xl text-[#2A3D5C] leading-relaxed">{descriptionLong}</p>
           <AnimatedButton label="Contact Us" href="/contact" dark />
         </div>
