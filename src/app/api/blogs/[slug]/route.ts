@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
-// Tiparea corectă a funcției cu extragere din context
 export async function GET(
   req: NextRequest,
   context: { params: { slug: string } }
