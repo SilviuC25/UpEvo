@@ -1,10 +1,18 @@
-import { NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
+import { NextResponse, NextRequest } from 'next/server';
+import { prisma } from '@/lib/prisma';
+import type { NextApiRequest } from 'next';
+import type { NextRequest as AppRequest } from 'next/server';
 
-export async function GET(req: Request, { params }: { params: { slug: string } }) {
+type RouteContext = {
+  params: { slug: string };
+};
+
+export async function GET(req: AppRequest, context: RouteContext) {
+  const { slug } = context.params;
+
   try {
     const post = await prisma.blogPost.findUnique({
-      where: { slug: params.slug },
+      where: { slug },
       select: {
         id: true,
         slug: true,
@@ -14,15 +22,15 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
         createdAt: true,
         updatedAt: true,
       },
-    })
+    });
 
     if (!post) {
-      return new NextResponse('Not Found', { status: 404 })
+      return new NextResponse('Not Found', { status: 404 });
     }
 
-    return NextResponse.json(post)
+    return NextResponse.json(post);
   } catch (error) {
-    console.error('Error fetching blog post:', error)
-    return new NextResponse('Internal Server Error', { status: 500 })
+    console.error('Error fetching blog post:', error);
+    return new NextResponse('Internal Server Error', { status: 500 });
   }
 }
