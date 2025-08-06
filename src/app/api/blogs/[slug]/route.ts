@@ -3,11 +3,15 @@ import { prisma } from '@/lib/prisma'
 
 export const dynamic = 'force-dynamic'
 
+type RouteContext = {
+  params: { slug: string }
+}
+
 export async function GET(
-  req: NextRequest,
-  { params }: { params: Promise<{ slug: string }> }
+  _req: NextRequest,
+  context: RouteContext
 ): Promise<NextResponse> {
-  const { slug } = await params
+  const { slug } = context.params
 
   try {
     const post = await prisma.blogPost.findUnique({
