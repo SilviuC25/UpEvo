@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
+// Tiparea corectă a funcției cu extragere din context
 export async function GET(
   req: NextRequest,
-  { params }: { params: { slug: string } }
+  context: { params: { slug: string } }
 ) {
-  const { slug } = params;
+  const slug = context.params.slug;
 
   try {
     const post = await prisma.blogPost.findUnique({
