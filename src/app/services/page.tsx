@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { CardHoverEffect } from '@/components/CardHoverEffect'
 import PageTitle from '@/components/PageTitle'
+import { LoaderDots } from '@/components/LoaderDots'
 
 import {
   Paintbrush,
@@ -26,6 +27,8 @@ type Service = {
 
 export default function ServicesPage() {
   const [services, setServices] = useState<Service[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     fetch('/api/services')
@@ -33,10 +36,15 @@ export default function ServicesPage() {
         if (!res.ok) throw new Error('Network response was not ok')
         return res.json()
       })
-      .then(data => setServices(data))
+      .then(data => {
+        setServices(data)
+        setError(false)
+      })
       .catch(err => {
         console.error('Failed to fetch services:', err)
+        setError(true)
       })
+      .finally(() => setLoading(false))
   }, [])
 
   const iconMap: Record<string, React.ReactNode> = {
@@ -55,6 +63,15 @@ export default function ServicesPage() {
     ...service,
     icon: iconMap[service.icon] || <Settings className="w-6 h-6" />,
   }))
+
+  if (loading) return <LoaderDots />
+
+  if (error)
+    return (
+      <motion.div className="min-h-screen flex items-center justify-center text-xl text-[#E74C3C]">
+        Failed to load services.
+      </motion.div>
+    )
 
   return (
     <motion.main

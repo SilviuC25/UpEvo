@@ -47,58 +47,74 @@ const Footer = () => {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <motion.div variants={fadeUpVariants} custom={1}>
-            <div className="flex items-center space-x-3 mb-6">
-              <motion.div
-                className="w-10 h-10 bg-gradient-to-r from-[#044E99] to-[#0D4E8C] rounded-lg flex items-center justify-center text-white font-bold text-lg transition-transform group-hover:rotate-12"
-                whileHover={{ rotate: 12, scale: 1.1 }}
-              >
-                UE
-              </motion.div>
-              <h2 className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#B1C6DC] to-white">
-                UpEvo
-              </h2>
-            </div>
+          <motion.div variants={fadeUpVariants} custom={1} className="text-center md:text-left">
+            <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#B1C6DC] to-white mb-6">
+              UpEvo
+            </h2>
             <p className="text-[#B5C8DB] mb-6">
               Empowering your brand through beautiful code & design.
             </p>
-            <div className="flex space-x-4">
-              {['github', 'youtube', 'linkedin'].map((platform) => (
-                <motion.a
-                  key={platform}
-                  href="#"
-                  whileHover={{ scale: 1.2 }}
-                  className="w-10 h-10 bg-[#1A2F4F] hover:bg-[#044E99] hover:shadow-lg hover:shadow-[#044E99]/40 rounded-full flex items-center justify-center transition duration-300"
+            <div className="flex justify-center md:justify-start space-x-4">
+              <motion.a
+                href="#"
+                whileHover={{ scale: 1.2 }}
+                className="w-10 h-10 bg-[#1A2F4F] hover:bg-[#044E99] rounded-full flex items-center justify-center transition duration-300"
+                aria-label="Instagram"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="white"
+                  viewBox="0 0 24 24"
+                  className="w-5 h-5"
                 >
-                  <i className={`fab fa-${platform} text-white`} />
-                </motion.a>
-              ))}
+                  <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm5.25-.88a1.12 1.12 0 11-2.24 0 1.12 1.12 0 012.24 0z" />
+                </svg>
+              </motion.a>
+
+              <motion.a
+                href="#"
+                whileHover={{ scale: 1.2 }}
+                className="w-10 h-10 bg-[#1A2F4F] hover:bg-[#044E99] rounded-full flex items-center justify-center transition duration-300"
+                aria-label="LinkedIn"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="white"
+                  viewBox="0 0 24 24"
+                  className="w-5 h-5"
+                >
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.025-3.039-1.852-3.039-1.853 0-2.136 1.445-2.136 2.939v5.669H9.352V9h3.414v1.561h.049c.476-.9 1.637-1.852 3.369-1.852 3.603 0 4.268 2.371 4.268 5.456v6.287zM5.337 7.433a2.067 2.067 0 11.001-4.134 2.067 2.067 0 01-.001 4.134zM6.781 20.452H3.892V9h2.889v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.225.792 24 1.771 24h20.451C23.2 24 24 23.225 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
+                </svg>
+              </motion.a>
+
+              <motion.a
+                href="#"
+                whileHover={{ scale: 1.2 }}
+                className="w-10 h-10 bg-[#1A2F4F] hover:bg-[#044E99] rounded-full flex items-center justify-center transition duration-300"
+                aria-label="GitHub"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="white"
+                  viewBox="0 0 24 24"
+                  className="w-5 h-5"
+                >
+                  <path d="M12 2C6.48 2 2 6.58 2 12.24c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.71-2.78.61-3.37-1.36-3.37-1.36-.46-1.2-1.12-1.52-1.12-1.52-.91-.63.07-.62.07-.62 1.01.07 1.54 1.07 1.54 1.07.9 1.56 2.36 1.11 2.94.85.09-.66.35-1.11.64-1.37-2.22-.26-4.56-1.12-4.56-4.98 0-1.1.39-2 1.03-2.7-.1-.26-.45-1.3.1-2.7 0 0 .84-.27 2.75 1.02A9.3 9.3 0 0112 8.8c.85.004 1.7.11 2.5.32 1.9-1.3 2.75-1.02 2.75-1.02.55 1.4.2 2.44.1 2.7.64.7 1.03 1.6 1.03 2.7 0 3.87-2.35 4.7-4.58 4.95.36.31.68.92.68 1.86 0 1.34-.01 2.42-.01 2.75 0 .27.18.58.69.48A10.01 10.01 0 0022 12.24C22 6.58 17.52 2 12 2z" />
+                </svg>
+              </motion.a>
             </div>
           </motion.div>
 
           <motion.div variants={fadeUpVariants} custom={2}>
             <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
             <ul className="space-y-3 text-[#B5C8DB]">
-              <li>
-                <Link href="/" className="hover:text-[#FDFDFC] hover:pl-2 transition-all duration-300">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="hover:text-[#FDFDFC] hover:pl-2 transition-all duration-300">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/portfolio" className="hover:text-[#FDFDFC] hover:pl-2 transition-all duration-300">
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="hover:text-[#FDFDFC] hover:pl-2 transition-all duration-300">
-                  Blog
-                </Link>
-              </li>
+              {['Home', 'Services', 'Projects', 'Blog'].map((text, i) => (
+                <li key={i}>
+                  <Link href={`/${text.toLowerCase() === 'home' ? '' : text.toLowerCase()}`} className="hover:text-[#FDFDFC] hover:pl-2 transition-all duration-300">
+                    {text}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </motion.div>
 
@@ -117,7 +133,7 @@ const Footer = () => {
               <li>
                 <p>Phone:</p>
                 <a
-                  href="tel:+244941540352"
+                  href="tel:+40770639392"
                   className="text-[#FDFDFC] hover:text-[#B1C6DC]"
                 >
                   +40 770 639 392

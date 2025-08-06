@@ -6,6 +6,7 @@ import { CardContainer, CardBody, CardItem } from '@/components/3d-card'
 import PageTitle from '@/components/PageTitle'
 import AnimatedButton from '@/components/AnimatedButton'
 import ProjectModal from '@/components/ProjectModal'
+import { LoaderDots } from '@/components/LoaderDots'
 
 type Project = {
   id: string
@@ -15,7 +16,7 @@ type Project = {
   liveUrl: string
   images: string[]
   createdAt: string
-  tags?: string[] // optional, dacă vrei să adaugi taguri în DB mai târziu
+  tags?: string[]
 }
 
 export default function PortfolioPage() {
@@ -43,14 +44,28 @@ export default function PortfolioPage() {
 
   return (
     <main className="min-h-screen bg-[#F8FBFB] py-16 px-4 md:px-12">
-      <PageTitle text="Our Expertise" />
+      <motion.div
+        initial={{ opacity: 0, y: -30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        viewport={{ once: true }}
+      >
+        <PageTitle text="Our Expertise" />
+      </motion.div>
 
       {loading ? (
-        <p className="text-center text-[#2A3D5C]">Loading projects...</p>
+        <LoaderDots />
       ) : projects.length === 0 ? (
-        <p className="text-center text-[#2A3D5C]">No projects found.</p>
+        <motion.p
+          className="text-center text-[#2A3D5C]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          No projects found.
+        </motion.p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 mt-12">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -64,34 +79,52 @@ export default function PortfolioPage() {
               viewport={{ once: true }}
             >
               <CardContainer>
-                <CardBody>
+                <CardBody className="bg-[#FDFDFC] shadow-md rounded-xl">
                   {project.images[0] && (
                     <CardItem translateZ={50}>
-                      <img
+                      <motion.img
                         src={project.images[0]}
                         alt={project.title}
-                        className="w-full h-48 object-cover rounded-xl mb-4 shadow-md"
+                        className="w-full h-48 object-cover rounded-xl mb-4 shadow-sm"
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                        viewport={{ once: true }}
                       />
                     </CardItem>
                   )}
 
                   <CardItem
-                    as="h3"
+                    as={motion.h3}
                     className="text-[#1A2F4F] text-xl font-bold"
                     translateZ={40}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                    viewport={{ once: true }}
                   >
                     {project.title}
                   </CardItem>
 
                   <CardItem
-                    as="p"
+                    as={motion.p}
                     className="text-[#2A3D5C] text-sm mt-2"
                     translateZ={30}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.4, delay: 0.1 }}
+                    viewport={{ once: true }}
                   >
                     {project.shortDescription}
                   </CardItem>
 
-                  <div className="flex gap-4 mt-6">
+                  <motion.div
+                    className="flex gap-4 mt-6"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.4, delay: 0.2 }}
+                    viewport={{ once: true }}
+                  >
                     <CardItem translateZ={20}>
                       <AnimatedButton
                         label="View Live"
@@ -108,7 +141,7 @@ export default function PortfolioPage() {
                         onClick={() => setSelectedProject(project)}
                       />
                     </CardItem>
-                  </div>
+                  </motion.div>
                 </CardBody>
               </CardContainer>
             </motion.div>

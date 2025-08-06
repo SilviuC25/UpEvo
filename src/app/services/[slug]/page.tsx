@@ -1,43 +1,51 @@
-import { prisma } from '@/lib/prisma'
-import { notFound } from 'next/navigation'
+'use client'
+
+import { useEffect, useState } from 'react'
+import { useParams } from 'next/navigation'
 import ServiceDetail from '@/components/ServiceDetail'
-import { Metadata } from 'next'
+import { LoaderDots } from '@/components/LoaderDots'
+import { motion } from 'framer-motion'
 
-type Props = {
-  params: {
-    slug: string
+type Service = {
+  title: string
+  descriptionLong: string
+  image: string
+}
+
+export default function ServiceSlugPage() {
+  const { slug } = useParams()
+  const [service, setService] = useState<Service | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+
+  useEffect(() => {
+    if (!slug) return
+
+    fetch(`/api/services/${slug}`)
+      .then(res => {
+        if (!res.ok) throw new Error('Not found')
+        return res.json()
+      })
+      .then(data => {
+        setService(data)
+        setError(false)
+      })
+      .catch(err => {
+        console.error('Failed to fetch service:', err)
+        setError(true)
+      })
+      .finally(() => setLoading(false))
+  }, [slug])
+
+  if (loading) return <LoaderDots />
+
+  if (error || !service) {
+    return (
+      <motion.div className="min-h-screen flex items-center justify-center text-xl text-[#E74C3C]">
+        Service not found.
+      </motion.div>
+    )
   }
-}
-
-export async function generateStaticParams() {
-  const services = await prisma.service.findMany({
-    select: { slug: true },
-  })
-
-  return services.map(service => ({
-    slug: service.slug,
-  }))
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const service = await prisma.service.findUnique({
-    where: { slug: params.slug },
-  })
-
-  if (!service) return {}
-
-  return {
-    title: service.title,
-    description: service.descriptionLong,
-  }
-}
-
-export default async function ServicePage({ params }: Props) {
-  const service = await prisma.service.findUnique({
-    where: { slug: params.slug },
-  })
-
-  if (!service) return notFound()
 
   return (
     <ServiceDetail

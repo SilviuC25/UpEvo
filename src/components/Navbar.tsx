@@ -4,11 +4,10 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion, Variants } from 'framer-motion'
 import { usePathname } from 'next/navigation'
-import AnimatedButton from './AnimatedButton'
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 import { MenuItem, PreviewItem } from './NavbarMenuItems'
-import { navbarItems } from '@/data/navbarItems'
+import { navbarItems } from '@/data/navbar/navbarItems'
 
 const navVariants: Variants = {
   hidden: { opacity: 0, y: -20 },
@@ -125,10 +124,6 @@ export default function Navbar() {
               </motion.div>
             )
           })}
-
-          <motion.div variants={itemVariants}>
-            <AnimatedButton label="Start Your Project" href="/contact" />
-          </motion.div>
         </motion.div>
       </div>
     </motion.nav>

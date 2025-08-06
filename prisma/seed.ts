@@ -1,47 +1,72 @@
 import { prisma } from '../src/lib/prisma'
 
 async function main() {
-  await prisma.project.createMany({
+  await prisma.blogPost.createMany({
     data: [
       {
-        title: "FastTyper",
-        shortDescription: "Typing‑speed game with user auth, profiles & leaderboard",
-        longDescription:
-          "FastTyper is a fun typing-speed web game built with authentication, user profiles, and a dynamic leaderboard. Built with Next.js, Prisma, and PostgreSQL. Features include real-time WPM tracking and score saving.",
-        liveUrl: "https://fast-typer-pi.vercel.app/",
-        images: ["/images/portfolio/fast-typer.png"],
-        tags: [
-          "Next.js",
-          "Prisma",
-          "PostgreSQL",
-          "Game",
-          "Authentication",
-          "Real-time",
-          "Leaderboard",
-          "Typing",
-        ],
+        slug: 'tech-trends-2025',
+        title: 'Tech Trends That Will Define 2025',
+        content: {
+          preview: 'Explore the groundbreaking technologies shaping the future...',
+          image: '/images/about-preview/1.jpg',
+          body: 'Full article content here...',
+        },
+        published: true,
       },
       {
-        title: "Hardware Explorer",
-        shortDescription: "Tech blog platform with in‑app post creation & previews",
-        longDescription:
-          "Hardware Explorer is a blog-style web platform where users can write, preview, and publish tech articles. Built with Next.js and Markdown support, featuring user-friendly post creation tools.",
-        liveUrl: "https://hardwareexplorer.vercel.app/",
-        images: ["/images/portfolio/hardware-explorer.png"],
-        tags: [
-          "Next.js",
-          "Blog",
-          "Markdown",
-          "MDX",
-          "Content Creation",
-          "Responsive Design",
-          "Tech",
-        ],
+        slug: 'design-magic-uiux',
+        title: 'The Magic of Great UI/UX Design',
+        content: {
+          preview: 'Design can make or break your product. Let\'s dive into what matters...',
+          image: '/images/about-preview/2.jpg',
+          body: 'Full article content here...',
+        },
+        published: true,
+      },
+      {
+        slug: 'performance-nextjs',
+        title: 'Boosting Performance in Next.js Apps',
+        content: {
+          preview: 'Speed matters. Learn how to optimize your Next.js project...',
+          image: '/images/about-preview/3.jpg',
+          body: 'Full article content here...',
+        },
+        published: true,
+      },
+      {
+        slug: 'future-ai',
+        title: 'AI: The Friend or the Foe?',
+        content: {
+          preview: 'Artificial Intelligence is everywhere, but what does it mean for us?',
+          image: '/images/about-preview/4.jpg',
+          body: 'Full article content here...',
+        },
+        published: true,
+      },
+      {
+        slug: 'minimalism-coding',
+        title: 'Coding with Minimalism in Mind',
+        content: {
+          preview: 'Less is more. Let\'s build cleaner, maintainable codebases...',
+          image: '/images/about-preview/1.jpg',
+          body: 'Full article content here...',
+        },
+        published: true,
+      },
+      {
+        slug: 'darkmode-ux',
+        title: 'Why Dark Mode Is More Than a Trend',
+        content: {
+          preview: 'Dark mode isn\'t just cool — it’s practical. Here’s why...',
+          image: '/images/about-preview/2.jpg',
+          body: 'Full article content here...',
+        },
+        published: true,
       },
     ],
   })
 
-  console.log("Projects seeded successfully.")
+  console.log('Blog posts seeded successfully.')
 }
 
 main()

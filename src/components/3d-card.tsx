@@ -72,17 +72,20 @@ export const CardContainer = ({
 export const CardBody = ({
   children,
   className,
+  wide = false,
 }: {
   children: React.ReactNode
   className?: string
+  wide?: boolean
 }) => (
   <div
     className={cn(
       'rounded-2xl border border-[#E5EAF0] bg-[#FDFDFC]',
       'shadow-sm hover:shadow-md transition-all duration-300',
-      'h-[420px] w-[320px] p-6 flex flex-col justify-between',
+      'flex flex-col justify-between p-0',
       'text-[#1A2F4F]',
       '[transform-style:preserve-3d] [&>*]:[transform-style:preserve-3d]',
+      wide ? 'w-[700px] md:h-auto' : 'w-[320px] h-[420px] p-6',
       className
     )}
   >
