@@ -5,9 +5,9 @@ export const dynamic = 'force-dynamic'
 
 export async function GET(
   _req: NextRequest,
-  { params }: { params: { slug: string } }
+  context: any
 ): Promise<NextResponse> {
-  const { slug } = params
+  const { slug } = context.params
 
   try {
     const post = await prisma.blogPost.findUnique({
