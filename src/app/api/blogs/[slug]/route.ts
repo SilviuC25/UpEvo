@@ -3,9 +3,15 @@ import { prisma } from '@/lib/prisma'
 
 export const dynamic = 'force-dynamic'
 
+interface RouteContext {
+  params: {
+    slug: string
+  }
+}
+
 export async function GET(
   _req: NextRequest,
-  context: any
+  context: RouteContext
 ): Promise<NextResponse> {
   const { slug } = context.params
 
